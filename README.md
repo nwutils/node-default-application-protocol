@@ -1,6 +1,6 @@
-# NodeDefaultApplicationProtocol
+# node-default-application-protocol
 
-A cross-platform, Node tool for setting a custom URI protocol handler on an OS.
+A cross-platform, Node tool for setting, checking, and removing a custom URI protocol handler on an OS.
 
 **Example:** `myapp://settings` could be tied to open a specific executable and pass in the argument `settings` (available to `process.argv[]`).
 
@@ -9,7 +9,7 @@ A cross-platform, Node tool for setting a custom URI protocol handler on an OS.
 ## Current status
 
 * [x] Potential solution found
-* [ ] API designed
+* [ ] API designed (in progress)
 * [ ] Windows Working
 * [ ] Linux Working
 * [ ] OSX Working
