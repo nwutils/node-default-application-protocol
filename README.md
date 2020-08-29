@@ -1,12 +1,8 @@
-# setAsDefaultProtocolClient
+# NodeDefaultApplicationProtocol
 
 A cross-platform, Node tool for setting a custom URI protocol handler on an OS.
 
 **Example:** `myapp://settings` could be tied to open a specific executable and pass in the argument `settings` (available to `process.argv[]`).
-
-* * *
-
-The name `setAsDefaultProtocolClient` actually comes from a feature built into Electron that performs this task. Currently the only Node-Adjacent way of doing this in a cross-platform manner. Unfortunately the Electron project has a long history of taking from the Open Source community without giving much back. So we'll just do it for them, but on behalf of the much kinder NW.js community instead. I've used Electron's API name, not because it is well named (like most of Electron's API, it is terribly named), but because it is a fairly obscure feature and would prefer to make it easier for  made the repo this name to help others that are googling it or looking on npm to find it.
 
 * * *
 
@@ -21,25 +17,15 @@ The name `setAsDefaultProtocolClient` actually comes from a feature built into E
 
 * * *
 
-## API Design
+## API Design (WIP)
 
 This is just a simple draft which may change as development advances on each OS.
 
 ```js
-const setAsDefaultProtocolClient = require('set-as-default-protocol-client');
+const protocolHandler = require('node-default-application-protocol');
 
 // returns boolean where true = success
-const protocolSet = setAsDefaultProtocolClient({
-  verbose: true,
-  /**
-   * Your own custom logging function called with helpful warning/error messages from the internal validators
-   *
-   * @param  {string} message The human readable warning/error message
-   * @param  {object} error   Sometimes an error or options object is passed
-   */
-  customLogger: function (message, error) {
-    console.log(message, error);
-  },
+const protocolSet = protocolHandler.setAsDefault({
   protocol: 'myapp',
   executable: process.execPath
 });
@@ -51,12 +37,107 @@ if (protocolSet) {
 }
 ```
 
+```js
+const protocolHandler = require('node-default-application-protocol');
+
+// returns boolean where true = success
+const isProtocol = protocolHandler.isDefault({
+  protocol: 'myapp',
+  executable: process.execPath
+});
+
+if (isProtocol) {
+  console.log('Yes, that protocol already exists');
+} else {
+  console.log('No it has not been set');
+}
+```
+
+```js
+const protocolHandler = require('node-default-application-protocol');
+
+// returns boolean where true = success
+const removedProtocol = protocolHandler.removeDefault({
+  protocol: 'myapp',
+  executable: process.execPath
+});
+
+if (removedProtocol) {
+  console.log('Removed successfully');
+} else {
+  console.log('There was a problem removing the protocol');
+}
+```
+
+```js
+const protocolHandler = require('node-default-application-protocol');
+
+// returns boolean where true = success
+const defaultApplication = protocolHandler.checkDefault({
+  protocol: 'myapp'
+});
+
+if (defaultApplication) {
+  console.log('The default application is', defaultApplication);
+} else {
+  console.log('No default application is applied to this protocol');
+}
+```
+
+### Global
+
 **Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
 :--             | :--      | :--                      | :--                          | :--
 `verbose`       | Boolean  | `true`, `false`          | `true`                       | If true, consoles out helpful warnings and errors.
 `customLogger`  | Function | Any function             | None                         | You can pass in your own custom function to log errors/warnings to. When called the function will receive a message string for the first argument and sometimes an error object for the second argument. This is useful in NW.js to see the messages logged to the regular Chromium Developer Tools instead of the background page's developer tools. But this can also be useful in other scenarios, like adding in custom wrappers or colors in a command line/terminal. This function may be called multiple times before all synchronous tasks complete.
+
+
+### `require('node-default-application-protocol').setAsDefault()`
+
+**NOT IMPLEMENTED**
+
+Returns boolean. `true` = worked. `false` = didn't work.
+
+**Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
+:--             | :--      | :--                      | :--                          | :--
 `protocol`      | String   | Any URL safe string      | **This is a required field** | This is the custom protocol you are defining.
 `executable`    | String   | Any valid path to a file | `process.execPath`           | The executable called when the custom protocol is called
+
+
+### `require('node-default-application-protocol').isDefault()`
+
+**NOT IMPLEMENTED**
+
+Returns boolean. `true` = is set as default. `false` = is not set as default.
+
+**Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
+:--             | :--      | :--                      | :--                          | :--
+`protocol`      | String   | Any URL safe string      | **This is a required field** | This is the custom protocol you are checking.
+`executable`    | String   | Any valid path to a file | `process.execPath`           | The executable called when the custom protocol is called
+
+
+
+### `require('node-default-application-protocol').removeDefault()`
+
+**NOT IMPLEMENTED**
+
+Returns boolean. `true` = worked. `false` = didn't work.
+
+**Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
+:--             | :--      | :--                      | :--                          | :--
+`protocol`      | String   | Any URL safe string      | **This is a required field** | This is the custom protocol you are removing.
+`executable`    | String   | Any valid path to a file | `process.execPath`           | The executable called when the custom protocol was called
+
+
+### `require('node-default-application-protocol').checkDefault()`
+
+**NOT IMPLEMENTED**
+
+Returns string of the application set as the default for the passed in protocol. String format may differ depending on platform.
+
+**Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
+:--             | :--      | :--                      | :--                          | :--
+`protocol`      | String   | Any URL safe string      | **This is a required field** | This is the custom protocol you are checking.
 
 
 
@@ -66,7 +147,7 @@ The solution comes from:
 
 * https://www.elasticfeed.com/fd4bf52a2301ddee57a5c225d09a5778/
 
-It links to other resource which have already faded from the internet, so for safety I will duplicate its contents here below.
+It links to other resources which have already faded from the internet, so for safety I will duplicate its contents here below.
 
 
 * * *
