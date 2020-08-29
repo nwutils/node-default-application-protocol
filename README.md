@@ -21,6 +21,47 @@ The name `setAsDefaultProtocolClient` actually comes from a feature built into E
 
 * * *
 
+## API Design
+
+This is just a simple draft which may change as development advances on each OS.
+
+```js
+const setAsDefaultProtocolClient = require('set-as-default-protocol-client');
+
+// returns boolean where true = success
+const protocolSet = setAsDefaultProtocolClient({
+  verbose: true,
+  /**
+   * Your own custom logging function called with helpful warning/error messages from the internal validators
+   *
+   * @param  {string} message The human readable warning/error message
+   * @param  {object} error   Sometimes an error or options object is passed
+   */
+  customLogger: function (message, error) {
+    console.log(message, error);
+  },
+  protocol: 'myapp',
+  executable: process.execPath
+});
+
+if (protocolSet) {
+  console.log('Everything worked');
+} else {
+  console.log('There was a problem setting the protocol');
+}
+```
+
+**Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
+:--             | :--      | :--                      | :--                          | :--
+`verbose`       | Boolean  | `true`, `false`          | `true`                       | If true, consoles out helpful warnings and errors.
+`customLogger`  | Function | Any function             | None                         | You can pass in your own custom function to log errors/warnings to. When called the function will receive a message string for the first argument and sometimes an error object for the second argument. This is useful in NW.js to see the messages logged to the regular Chromium Developer Tools instead of the background page's developer tools. But this can also be useful in other scenarios, like adding in custom wrappers or colors in a command line/terminal. This function may be called multiple times before all synchronous tasks complete.
+`protocol`      | String   | Any URL safe string      | **This is a required field** | This is the custom protocol you are defining.
+`executable`    | String   | Any valid path to a file | `process.execPath`           | The executable called when the custom protocol is called
+
+
+
+* * *
+
 The solution comes from:
 
 * https://www.elasticfeed.com/fd4bf52a2301ddee57a5c225d09a5778/
