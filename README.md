@@ -1,6 +1,8 @@
 # setAsDefaultProtocolClient
 
-A cross-platform, Node tool for setting a custom URI protocol handler on an OS
+A cross-platform, Node tool for setting a custom URI protocol handler on an OS.
+
+**Example:** `myapp://settings` could be tied to open a specific executable and pass in the argument `settings` (available to `process.argv[]`).
 
 * * *
 
