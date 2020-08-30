@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "description": "A cross-platform, Node tool for setting, checking, and removing a custom URI protocol handler on an OS.",
   "main": "index.js",
+  "scripts": {
+    "lint": "eslint --config=.eslintrc.js index.js test.js src/**/*.js",
+    "fix": "eslint --fix --config=.eslintrc.js index.js test.js src/**/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-tjw-base": "^1.0.0",
+    "eslint-plugin-jest": "^23.18.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nwutils/node-default-application-protocol.git"
