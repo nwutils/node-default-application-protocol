@@ -10,6 +10,7 @@ A cross-platform, Node tool for setting, checking, and removing a custom URI pro
 
 * [x] Potential solution found
 * [x] API designed (subject to change)
+* [x] API validation
 * [ ] Windows Working
 * [ ] Linux Working
 * [ ] OSX Working
