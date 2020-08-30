@@ -9,7 +9,7 @@ A cross-platform, Node tool for setting, checking, and removing a custom URI pro
 ## Current status
 
 * [x] Potential solution found
-* [ ] API designed (in progress)
+* [x] API designed (subject to change)
 * [ ] Windows Working
 * [ ] Linux Working
 * [ ] OSX Working
