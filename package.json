@@ -1,0 +1,17 @@
+{
+  "name": "node-default-application-protocol",
+  "version": "1.0.0",
+  "description": "A cross-platform, Node tool for setting, checking, and removing a custom URI protocol handler on an OS.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nwutils/node-default-application-protocol.git"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "author": "The Jared Wilcurt",
+  "bugs": {
+    "url": "https://github.com/nwutils/node-default-application-protocol/issues"
+  },
+  "homepage": "https://github.com/nwutils/node-default-application-protocol#readme"
+}
