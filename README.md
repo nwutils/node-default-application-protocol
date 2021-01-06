@@ -41,7 +41,7 @@ if (protocolSet) {
 ```js
 const protocolHandler = require('node-default-application-protocol');
 
-// returns boolean where true = success
+// returns true if the default for a protocol matches your executable
 const isProtocol = protocolHandler.isDefault({
   protocol: 'myapp',
   executable: process.execPath
@@ -73,7 +73,7 @@ if (removedProtocol) {
 ```js
 const protocolHandler = require('node-default-application-protocol');
 
-// returns boolean where true = success
+// returns string of the default application for the specified protocol or undefined
 const defaultApplication = protocolHandler.checkDefault({
   protocol: 'myapp'
 });
@@ -86,6 +86,8 @@ if (defaultApplication) {
 ```
 
 ### Global
+
+These properties can be passed in to any of the methods listed below.
 
 **Key**         | **Type** | **Allowed**              | **Default**                  | **Description**
 :--             | :--      | :--                      | :--                          | :--
