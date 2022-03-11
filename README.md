@@ -6,6 +6,16 @@ A cross-platform, Node tool for setting, checking, and removing a custom URI pro
 
 * * *
 
+**STATUS:**
+
+Currenlty this project is in the "planning and accepting PRs" phase.
+
+An alternative library that has popped up after this was created may be a more valuable option:
+
+* https://github.com/Shubham-Kumar-2000/protocol-registry
+
+* * *
+
 ## Current status
 
 * [x] Potential solution found
